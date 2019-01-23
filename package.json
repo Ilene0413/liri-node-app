@@ -1,0 +1,34 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bandsintown": "^1.0.1",
+    "bandsintown-events": "^1.0.4",
+    "dotenv": "^6.2.0",
+    "inquirer": "^6.2.1",
+    "moment": "^2.23.0",
+    "node-spotify-api": "^1.0.7",
+    "omdb-client": "^2.0.0",
+    "save": "^2.3.3",
+    "spotify-web-api-node": "^4.0.0",
+    "xhr2": "^0.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ilene0413/liri-node-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ilene0413/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/Ilene0413/liri-node-app#readme"
+}
