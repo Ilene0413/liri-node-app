@@ -15,39 +15,39 @@ All output data is displayed ont the console and logged to the log.txt file.
 
 Liri will prompt the user with a checkbox list asking them what they would like to do. 
 
-![user prompts](https://github.com/Ilene0413/liri-node-app/images/prompt-screen.png)
+![user prompts](https://github.com/Ilene0413/liri-node-app/blob/master/images/prompt-screen.png)
 
 The user will move the cursor up and down to get to the option they want and then press the space bar and then enter to select
 
-![scroll to option](https://github.com/Ilene0413/liri-node-app/images/scroll-option.png)
+![scroll to option](https://github.com/Ilene0413/liri-node-app/blob/master/images/scroll-option.png)
 
-![select option](https://github.com/Ilene0413/liri-node-app/images/select-option.png)
+![select option](https://github.com/Ilene0413/liri-node-app/blob/master/images/select-option.png)
 
 After the user selects an option, LIRI will determine which option was selected and follow up with a question depending on the option chosen. For Concert-this, it will ask which artist; for Spotify-this-song, it will ask for the song title; for Movie-this, it will ask for a movie title.  If the user chooses Do what you want, no question is asked.
 
-![ask follow up question](https://github.com/Ilene0413/liri-node-app/images/ask-follow-up-quest.png)
+![ask follow up question](https://github.com/Ilene0413/liri-node-app/blob/master/images/ask-follow-up-quest.png)
 
 If the user does not enter a value for the follow up question, LIRI will use the default option (Pink for Concert-this; Mr. Nobody - for Movie-this; The Sign for Spotify-this-song)
 
-![user chose Spotify-this-song but user did not enter song title, so defaulted to The Sign](https://github.com/Ilene0413/liri-node-app/images/no-song-title-entered.png)
+![user chose Spotify-this-song but user did not enter song title, so defaulted to The Sign](https://github.com/Ilene0413/liri-node-app/blob/master/images/no-song-title-entered.png)
 
 
-![user chose Spotify-this-song and user entered song title](https://github.com/Ilene0413/liri-node-app/images/song-title-entered.png)
+![user chose Spotify-this-song and user entered song title](https://github.com/Ilene0413/liri-node-app/blob/master/images/song-title-entered.png)
 
-![user chose Concert-this, but did not enter an artist, so defaulted to Pink](https://github.com/Ilene0413/liri-node-app/images/no-artist-entered.png)
+![user chose Concert-this, but did not enter an artist, so defaulted to Pink](https://github.com/Ilene0413/liri-node-app/blob/master/images/no-artist-entered.png)
 
-![user chose Concert-this and user entered artist](https://github.com/Ilene0413/liri-node-app/images/artist-entered.png)
+![user chose Concert-this and user entered artist](https://github.com/Ilene0413/liri-node-app/blob/master/images/artist-entered.png)
 
-![user chose Movie-this and user did not enter a movie title, so defaulted to Mr. Nobody](https://github.com/Ilene0413/liri-node-app/images/no-movie-entered.png)
-![user chose Concert-this and user entered artist](https://github.com/Ilene0413/liri-node-app/images/artist-entered.png)
+![user chose Movie-this and user did not enter a movie title, so defaulted to Mr. Nobody](https://github.com/Ilene0413/liri-node-app/blob/master/images/no-movie-entered.png)
+![user chose Concert-this and user entered artist](https://github.com/Ilene0413/liri-node-app/blob/master/images/artist-entered.png)
 
-![user chose Movie-this and user entered movie title](https://github.com/Ilene0413/liri-node-app/images/movie-entered.png)
+![user chose Movie-this and user entered movie title](https://github.com/Ilene0413/liri-node-app/blob/master/images/movie-entered.png)
 
-![user chose Do what you want - randomly picked from the random.txt file using Math.Random](https://github.com/Ilene0413/liri-node-app/images/dowhatyouwant-choice1.png)
+![user chose Do what you want - randomly picked from the random.txt file using Math.Random](https://github.com/Ilene0413/liri-node-app/blob/master/images/dowhatyouwant-choice1.png)
 
-![user chose Do what you want - randomly picked from the random.txt file using Math.Random](https://github.com/Ilene0413/liri-node-app/images/dowhatyouwant-choice2.png)
+![user chose Do what you want - randomly picked from the random.txt file using Math.Random](https://github.com/Ilene0413/liri-node-app/blob/master/images/dowhatyouwant-choice2.png)
 
-![user chose Do what you want - randomly picked from the random.txt file using Math.Random](https://github.com/Ilene0413/liri-node-app/images/dowhatyouwant-choice3.png)
+![user chose Do what you want - randomly picked from the random.txt file using Math.Random](https://github.com/Ilene0413/liri-node-app/blob/master/images/dowhatyouwant-choice3.png)
 
 
 
