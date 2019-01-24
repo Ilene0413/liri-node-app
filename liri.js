@@ -36,7 +36,7 @@ inquirer.prompt([
     type: "input",
     name: "artist",
     message: "Enter artist you want to see",
-    // Only run if user answers concert-this to first question
+    // Only run if user answers Concert-this to first question
     when: function (answers) {
       return answers.command == "Concert-this";
     }
@@ -46,7 +46,7 @@ inquirer.prompt([
     name: "song",
     message: "Enter song title",
     when: function (answers) {
-      // Only run if user answers spotify-this-song to first question
+      // Only run if user answers Spotify-this-song to first question
       return answers.command == "Spotify-this-song";
       ;
     }
@@ -56,7 +56,7 @@ inquirer.prompt([
     name: "movie",
     message: "Enter movie",
     when: function (answers) {
-      // Only run if user answers movie-this to first question
+      // Only run if user answers Movie-this to first question
       return answers.command == "Movie-this";
 
     }
@@ -64,7 +64,6 @@ inquirer.prompt([
 ]).then(function (answers) {
 
   // determine what entertainment to get information on
-
   if (answers.command == "Concert-this") {
     let artist = answers.artist;
     artist = artist.trim();
@@ -95,33 +94,49 @@ inquirer.prompt([
   }
 })
   .catch(function (error) {
-    console.log("error f" + error);
+    console.log("error f " + error);
+    appendLog("error f " + error + ",");
     return;
   });
 
-//this function is called to find venues, location, and date of where artists are playing
+//this function uses axios to call the bands in town API to find venues, location, and date of where artists are playing
+//it will display all venues found for the artist
 
 function concert(artist) {
 
   let queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
   axios.get(queryUrl).then(
     function (response) {
-      if (response.data.length === 0) {
+      // if an artist is not in bands in town api, take care of unexplainable results
+      if (response.data.length === 0 || typeof response === "undefined") {
         console.log("No concerts found for " + artist);
+        appendLog("No concerts found for " + artist + ",");
       }
       else {
         console.log("Artist: " + artist);
+        appendLog("Artist: " + artist + ",");
         for (let i = 0; i < response.data.length; i++) {
+          console.log("venue name " + response.data[i].venue.name);
+          if (response.data[i] === undefined) {
+            break;
+          }
+          else {
           console.log("Venue: " + response.data[i].venue.name);
+          appendLog("Venue: " + response.data[i].venue.name + ",");
           console.log("Location: " + response.data[i].venue.city + " " + response.data[i].venue.country);
+          appendLog("Location: " + response.data[i].venue.city + " " + response.data[i].venue.country + ",");
           console.log("Date: " + moment(response.data[i].datetime).format("MM/DD/YYYY"));
+          appendLog("Date: " + moment(response.data[i].datetime).format("MM/DD/YYYY") + ",");
           console.log(" ");
+          }
+          
         }
       };
     })
     .catch(
       function (errors) {
         console.log(errors);
+        appendLog(errors + ",");
       });
 
 }
@@ -135,26 +150,26 @@ function concert(artist) {
 function spotifyInfo(songTitle) {
   let Spotify = require("node-spotify-api");
 
-//  let spotify = new Spotify({
-  //  id: "1379d8b38a3b445cb7d543c585378576",
- //   secret: "eeee9c5888134b29b9fba7edbeb88e44"
-//  });
-  let spotify = new Spotify({
+ let spotify = new Spotify({
     id: process.env.SPOTIFY_ID,
-    secret: process.env.SPOTIFY_SECRETgit
+    secret: process.env.SPOTIFY_SECRET
   });
+
 
   spotify
     .search({ type: 'track', query: songTitle })
     .then(function (response) {
       if (response.tracks.items.length === 0) {
         console.log("no information for " + songTitle);
+        appendLog("no information for " + songTitle + ",");
       }
       else {
         for (let i = 0; i < response.tracks.items.length; i++) {
           console.log("Song Title: " + songTitle);
+          appendLog("Song Title: " + songTitle + ",");
           for (let j = 0; j < response.tracks.items[i].artists.length; j++) {
             console.log("Artist: " + response.tracks.items[i].artists[j].name.trim());
+            appendLog("Artist: " + response.tracks.items[i].artists[j].name + ",");
           }
           console.log("Album: " + response.tracks.items[i].name.trim());
           if (response.tracks.items[i].preview_url !== null) {
@@ -166,6 +181,7 @@ function spotifyInfo(songTitle) {
     })
     .catch(function (err) {
       console.log(err);
+      appendLog(err);
     });
 }
 //this function will display the movie information for the movie requested using axios omdb-client
@@ -190,26 +206,36 @@ function movieInfo(movieTitle) {
       //check to see if there is any information on the movie
       if (response.data.Title === undefined) {
         console.log("No information for movie " + title);
+        appendLog("No information for movie " + title + ",");
       }
       else {
         console.log("Movie Title: " + response.data.Title);
+        appendLog("Movie Title: " + response.data.Title + ",");
         console.log("Year Released: " + response.data.Year);
+        appendLog("Year Released: " + response.data.Year + ",");
         console.log("Country: " + response.data.Country);
+        appendLog("Country: " + response.data.Country + ",");
         console.log("Languages: " + response.data.Language);
+        appendLog("Languages: " + response.data.Language + " ");
         //check to see if there are any ratings for the movice
         if (response.data.Ratings.length !== 0) {
           console.log("imdb Rating: " + response.data.Ratings[0].Value);
+          appendLog("imdb Rating: " + response.data.Ratings[0].Value + ",");
           if (response.data.Ratings.length > 1) {
             console.log("Rotten Tomatoes: " + response.data.Ratings[1].Value);
+            appendLog("Rotten Tomatoes: " + response.data.Ratings[1].Value + ",");
           }
         }
         console.log("Plot: " + response.data.Plot);
+        appendLog("Plot: " + response.data.Plot + ",");
         console.log("Actors " + response.data.Actors);
+        appendLog("Actors " + response.data.Actors + ",");
         console.log(" ");
       }
     })
     .catch(function (err) {
       console.log(err);
+      appendLog(err);
     });
 }
 
@@ -221,6 +247,7 @@ function doWhatItSays() {
 
   fs.readFile("random.txt", "utf8", function (err, data) {
     if (err) {
+      appendLog(err);
       return console.log(err);
     }
 
@@ -232,7 +259,7 @@ function doWhatItSays() {
     //use Math.floor(Math.Random() to get the event to get info on
 
     let numEvents = randomEvents.length / 2;
-    let eventNum = Math.floor(Math.random() * numEvents)
+    let eventNum = Math.floor(Math.random() * numEvents);
     // event to search for is an even number of array starting at 0
     if (eventNum % 2 !== 0) {
       eventNum--
@@ -255,6 +282,12 @@ function doWhatItSays() {
   });
 
 }
+function appendLog(appendItem) {
+  fs.appendFile("log.txt", appendItem, function (err) {
 
-
-
+    // If an error was experienced we will log it.
+    if (err) {
+      console.log(err);
+    }
+  });
+}
