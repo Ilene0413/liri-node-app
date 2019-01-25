@@ -35,7 +35,7 @@ If the user does not enter a value for the follow up question, LIRI will use the
 
 In the following screen, the user does not enter a song, so defaults to **The Sign**.
 
-![user chose Spotify-this-song but user did not enter song title, so defaulted to The Sign](https://github.com/Ilene0413/liri-node-app/blob/master/images/no-song-title-entered.png)
+![user chose Spotify-this-song but user did not enter song title, so defaulted to The Sign](https://github.com/Ilene0413/liri-node-app/blob/master/images/spotify-no-song-title-entered.png)
 
 In the following screen, the user entered a song title that does not exist
 
@@ -51,7 +51,7 @@ In the following screen, user did not enter an artist/band, so defaults to **Elt
 
 In the following screen, user entered a valid artist/band that has upcoming concerts
 
-![user chose Concert-this and user entered artist](https://github.com/Ilene0413/liri-node-app/blob/master/images/artist-entered.png)
+![user chose Concert-this and user entered artist](https://github.com/Ilene0413/liri-node-app/blob/master/images/artist-entered.jpg)
 
 In the following screen, user entered an artist that does not have any upcoming concerts
 
