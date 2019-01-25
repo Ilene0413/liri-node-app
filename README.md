@@ -35,7 +35,7 @@ If the user does not enter a value for the follow up question, LIRI will use the
 
 In the following screen, the user does not enter a song, so defaults to **The Sign**.
 
-![user chose Spotify-this-song but user did not enter song title, so defaulted to The Sign](https://github.com/Ilene0413/liri-node-app/blob/master/images/spotify-no-song-title-entered.png)
+![user chose Spotify-this-song but user did not enter song title, so defaulted to The Sign](https://github.com/Ilene0413/liri-node-app/blob/master/images/spotify-no-song-entered.png)
 
 In the following screen, the user entered a song title that does not exist
 
