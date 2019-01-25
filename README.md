@@ -29,35 +29,35 @@ After the user selects an option, LIRI will determine which option was selected 
 
 If the user does not enter a value for the follow up question, LIRI will use the default option (Pink for Concert-this; Mr. Nobody - for Movie-this; The Sign for Spotify-this-song)
 
-![##user chose Spotify-this-song but user did not enter song title, so defaulted to The Sign##](https://github.com/Ilene0413/liri-node-app/blob/master/images/no-song-title-entered.png)
+![user chose Spotify-this-song but user did not enter song title, so defaulted to The Sign](https://github.com/Ilene0413/liri-node-app/blob/master/images/no-song-title-entered.png)
 
 
-![##user chose Spotify-this-song and user entered song title##](https://github.com/Ilene0413/liri-node-app/blob/master/images/song-title-entered.png)
+![user chose Spotify-this-song and user entered song title](https://github.com/Ilene0413/liri-node-app/blob/master/images/song-title-entered.png)
 
 
-![##user chose Concert-this, but did not enter an artist, so defaulted to Pink##](https://github.com/Ilene0413/liri-node-app/blob/master/images/no-artist-entered.png)
+![user chose Concert-this, but did not enter an artist, so defaulted to Pink](https://github.com/Ilene0413/liri-node-app/blob/master/images/no-artist-entered.png)
 
 
-![##user chose Concert-this and user entered artist##](https://github.com/Ilene0413/liri-node-app/blob/master/images/artist-entered.png)
+![user chose Concert-this and user entered artist](https://github.com/Ilene0413/liri-node-app/blob/master/images/artist-entered.png)
 
 
-![##user chose Movie-this and user did not enter a movie title, so defaulted to Mr. Nobody##](https://github.com/Ilene0413/liri-node-app/blob/master/images/no-movie-entered.png)
+![user chose Movie-this and user did not enter a movie title, so defaulted to Mr. Nobody](https://github.com/Ilene0413/liri-node-app/blob/master/images/no-movie-entered.png)
 
 
-![##user chose Concert-this and user entered artist##](https://github.com/Ilene0413/liri-node-app/blob/master/images/artist-entered.png)
+![user chose Concert-this and user entered artist](https://github.com/Ilene0413/liri-node-app/blob/master/images/artist-entered.png)
 
 
-![##user chose Movie-this and user entered movie title##](https://github.com/Ilene0413/liri-node-app/blob/master/images/movie-entered.png)
+![user chose Movie-this and user entered movie title](https://github.com/Ilene0413/liri-node-app/blob/master/images/movie-entered.png)
 
 
-![##user chose Do what you want - randomly picked from the random.txt file using Math.Random##](https://github.com/Ilene0413/liri-node-app/blob/master/images/dowhatyouwant-choice1.png)
+![user chose Do what you want - randomly picked from the random.txt file using Math.Random](https://github.com/Ilene0413/liri-node-app/blob/master/images/dowhatyouwant-choice1.png)
 
 
 
-![##user chose Do what you want - randomly picked from the random.txt file using Math.Random##](https://github.com/Ilene0413/liri-node-app/blob/master/images/dowhatyouwant-choice2.png)
+![user chose Do what you want - randomly picked from the random.txt file using Math.Random](https://github.com/Ilene0413/liri-node-app/blob/master/images/dowhatyouwant-choice2.png)
 
 
-![##user chose Do what you want - randomly picked from the random.txt file using Math.Random##](https://github.com/Ilene0413/liri-node-app/blob/master/images/dowhatyouwant-choice3.png)
+![user chose Do what you want - randomly picked from the random.txt file using Math.Random](https://github.com/Ilene0413/liri-node-app/blob/master/images/dowhatyouwant-choice3.png)
 
 
 

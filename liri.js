@@ -105,31 +105,38 @@ inquirer.prompt([
 function concert(artist) {
 
   let queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+  console.log(queryUrl);
   axios.get(queryUrl).then(
     function (response) {
       // if an artist is not in bands in town api, take care of unexplainable results
-      if (response.data.length === 0 || typeof response === "undefined") {
-        console.log("No concerts found for " + artist);
-        appendLog("No concerts found for " + artist + ",");
+      // 3 possiblities: response.data is an empty array, response.data is a non-empty array, response.data is not an array
+      if (!Array.isArray(response.data)) {
+        console.log("Invalid artist/band entered " + artist);
+        appendLog("Invalid artist/band entered " + artist + ",");
       }
       else {
-        console.log("Artist: " + artist);
-        appendLog("Artist: " + artist + ",");
-        for (let i = 0; i < response.data.length; i++) {
-          console.log("venue name " + response.data[i].venue.name);
-          if (response.data[i] === undefined) {
-            break;
+        if (response.data.length === 0) {
+          console.log("No concerts found for " + artist);
+          appendLog("No concerts found for " + artist + ",");
+        }
+        else {
+          console.log("Artist: " + artist);
+          appendLog("Artist: " + artist + ",");
+          for (let i = 0; i < response.data.length; i++) {
+            console.log("venue name " + response.data[i].venue.name);
+            if (response.data[i] === undefined) {
+              continue;
+            }
+            else {
+              console.log("Venue: " + response.data[i].venue.name);
+              appendLog("Venue: " + response.data[i].venue.name + ",");
+              console.log(`Location: ${response.data[i].venue.city} ${response.data[i].venue.country}`);
+              appendLog("Location: " + response.data[i].venue.city + " " + response.data[i].venue.country + ",");
+              console.log("Date: " + moment(response.data[i].datetime).format("MM/DD/YYYY"));
+              appendLog("Date: " + moment(response.data[i].datetime).format("MM/DD/YYYY") + ",");
+              console.log(" ");
+            }
           }
-          else {
-          console.log("Venue: " + response.data[i].venue.name);
-          appendLog("Venue: " + response.data[i].venue.name + ",");
-          console.log("Location: " + response.data[i].venue.city + " " + response.data[i].venue.country);
-          appendLog("Location: " + response.data[i].venue.city + " " + response.data[i].venue.country + ",");
-          console.log("Date: " + moment(response.data[i].datetime).format("MM/DD/YYYY"));
-          appendLog("Date: " + moment(response.data[i].datetime).format("MM/DD/YYYY") + ",");
-          console.log(" ");
-          }
-          
         }
       };
     })
@@ -150,7 +157,7 @@ function concert(artist) {
 function spotifyInfo(songTitle) {
   let Spotify = require("node-spotify-api");
 
- let spotify = new Spotify({
+  let spotify = new Spotify({
     id: process.env.SPOTIFY_ID,
     secret: process.env.SPOTIFY_SECRET
   });
