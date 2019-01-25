@@ -21,6 +21,9 @@ let fs = require("fs");
 //load the moment package
 let moment = require('moment');
 
+// global variable - logData
+let state = { logData: "" };
+
 // Determine what the user wants information on
 // can choose from concert,spotify song, movie, or do what it says
 
@@ -100,50 +103,43 @@ inquirer.prompt([
   });
 
 //this function uses axios to call the bands in town API to find venues, location, and date of where artists are playing
-//it will display all venues found for the artist
+//it will display all venues found for the artist. If the artist/band is not entered, it will default to Elton John. If
+//an invalid artist is entered, a message is sent letting the user know.
 
 function concert(artist) {
 
   let queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
-  console.log(queryUrl);
   axios.get(queryUrl).then(
     function (response) {
       // if an artist is not in bands in town api, take care of unexplainable results
       // 3 possiblities: response.data is an empty array, response.data is a non-empty array, response.data is not an array
       if (!Array.isArray(response.data)) {
-        console.log("Invalid artist/band entered " + artist);
-        appendLog("Invalid artist/band entered " + artist + ",");
+        state.logData = `Invalid artist/band entered ${artist}`;
+        dataLog(state.logData);
       }
       else {
         if (response.data.length === 0) {
-          console.log("No concerts found for " + artist);
-          appendLog("No concerts found for " + artist + ",");
+          state.logData = `No concerts found for ${artist}`;
+          dataLog(state.logData);
         }
         else {
-          console.log("Artist: " + artist);
-          appendLog("Artist: " + artist + ",");
+          state.logData = `Artist: ${artist}`;
+          dataLog(state.logData);
           for (let i = 0; i < response.data.length; i++) {
-            console.log("venue name " + response.data[i].venue.name);
-            if (response.data[i] === undefined) {
-              continue;
-            }
-            else {
-              console.log("Venue: " + response.data[i].venue.name);
-              appendLog("Venue: " + response.data[i].venue.name + ",");
-              console.log(`Location: ${response.data[i].venue.city} ${response.data[i].venue.country}`);
-              appendLog("Location: " + response.data[i].venue.city + " " + response.data[i].venue.country + ",");
-              console.log("Date: " + moment(response.data[i].datetime).format("MM/DD/YYYY"));
-              appendLog("Date: " + moment(response.data[i].datetime).format("MM/DD/YYYY") + ",");
-              console.log(" ");
-            }
+            state.logData = `Venue: ${response.data[i].venue.name}`;
+            dataLog(state.logData);
+            state.logData = `Location: ${response.data[i].venue.city}, ${response.data[i].venue.country}}`;
+            dataLog(state.logData);
+            state.logData = `Date: ${moment(response.data[i].datetime).format("MM/DD/YYY")}`;
+            dataLog(state.logData);
+            console.log(" ");
           }
         }
       };
     })
     .catch(
       function (errors) {
-        console.log(errors);
-        appendLog(errors + ",");
+        dataLog(errors);
       });
 
 }
@@ -167,28 +163,29 @@ function spotifyInfo(songTitle) {
     .search({ type: 'track', query: songTitle })
     .then(function (response) {
       if (response.tracks.items.length === 0) {
-        console.log("no information for " + songTitle);
-        appendLog("no information for " + songTitle + ",");
+        state.logData = `No information for ${songTitle}`;
+        dataLog(state.logData);
       }
       else {
         for (let i = 0; i < response.tracks.items.length; i++) {
-          console.log("Song Title: " + songTitle);
-          appendLog("Song Title: " + songTitle + ",");
+          state.logData = `Song Title: ${songTitle}`;
+          dataLog(state.logData);
           for (let j = 0; j < response.tracks.items[i].artists.length; j++) {
-            console.log("Artist: " + response.tracks.items[i].artists[j].name.trim());
-            appendLog("Artist: " + response.tracks.items[i].artists[j].name + ",");
+            state.logData = `Artist: ${response.tracks.items[i].artists[j].name.trim()}`;
+            dataLog(state.logData);
           }
-          console.log("Album: " + response.tracks.items[i].name.trim());
+          state.logData = `Album: ${response.tracks.items[i].name.trim()}`;
+          dataLog(state.logData);
           if (response.tracks.items[i].preview_url !== null) {
-            console.log("Preview spotify url: " + response.tracks.items[i].preview_url);
+            state.logData = `Preview spotify url: ${response.tracks.items[i].preview_url}`;
+            dataLog(state.logData);
           }
           console.log(" ");
         }
       }
     })
     .catch(function (err) {
-      console.log(err);
-      appendLog(err);
+      dataLog(err);
     });
 }
 //this function will display the movie information for the movie requested using axios omdb-client
@@ -212,37 +209,38 @@ function movieInfo(movieTitle) {
     function (response) {
       //check to see if there is any information on the movie
       if (response.data.Title === undefined) {
-        console.log("No information for movie " + title);
-        appendLog("No information for movie " + title + ",");
+        state.logData = `No information for movie ${title}`;
+        dataLog(state.logData);
       }
       else {
-        console.log("Movie Title: " + response.data.Title);
-        appendLog("Movie Title: " + response.data.Title + ",");
-        console.log("Year Released: " + response.data.Year);
-        appendLog("Year Released: " + response.data.Year + ",");
-        console.log("Country: " + response.data.Country);
-        appendLog("Country: " + response.data.Country + ",");
-        console.log("Languages: " + response.data.Language);
-        appendLog("Languages: " + response.data.Language + " ");
+        state.logData = `Movie Titel: ${response.data.Title}`;
+        dataLog(state.logData);
+        state.logData = `Year Released: ${response.data.Year}`;
+        dataLog(state.logData);
+        state.logData = `Country: ${response.data.Country}`;
+        dataLog(state.logData);
+        state.logData = `Languages: ${response.data.Language}`;
+        dataLog(state.logData);
+
         //check to see if there are any ratings for the movice
         if (response.data.Ratings.length !== 0) {
-          console.log("imdb Rating: " + response.data.Ratings[0].Value);
-          appendLog("imdb Rating: " + response.data.Ratings[0].Value + ",");
+          state.logData = `IMDB Rating: ${response.data.Ratings[0].Value}`;
+          dataLog(state.logData);
+
           if (response.data.Ratings.length > 1) {
-            console.log("Rotten Tomatoes: " + response.data.Ratings[1].Value);
-            appendLog("Rotten Tomatoes: " + response.data.Ratings[1].Value + ",");
+            state.logData = `Rotten Tomatoes: ${response.data.Ratings[1].Value}`;
+            dataLog(state.logData);
           }
         }
-        console.log("Plot: " + response.data.Plot);
-        appendLog("Plot: " + response.data.Plot + ",");
-        console.log("Actors " + response.data.Actors);
-        appendLog("Actors " + response.data.Actors + ",");
+        state.logData = `Plot: ${response.data.Plot}`;
+        dataLog(state.logData);
+        state.logData = `Actors ${response.data.Actors}`;
+        dataLog(state.logData);
         console.log(" ");
       }
     })
     .catch(function (err) {
-      console.log(err);
-      appendLog(err);
+      dataLog(err);
     });
 }
 
@@ -254,7 +252,7 @@ function doWhatItSays() {
 
   fs.readFile("random.txt", "utf8", function (err, data) {
     if (err) {
-      appendLog(err);
+      dataLog(err);
       return console.log(err);
     }
 
@@ -284,13 +282,12 @@ function doWhatItSays() {
         spotifyInfo(randomEvents[eventNum + 1]);
       }
     }
-
-
   });
 
 }
-function appendLog(appendItem) {
-  fs.appendFile("log.txt", appendItem, function (err) {
+function dataLog(dataItem) {
+  console.log(dataItem);
+  fs.appendFile("log.txt", dataItem + ",", function (err) {
 
     // If an error was experienced we will log it.
     if (err) {
