@@ -1,4 +1,9 @@
 # liri-node-app
+A video of how the liri-node-app works can be found at https://drive.google.com/file/d/12hSqAh9EqDkx85wrBV-L5eWh8mpBf7oC/view
+
+http://github.com - automatic!
+[GitHub](https://drive.google.com/file/d/12hSqAh9EqDkx85wrBV-L5eWh8mpBf7oC/view)
+
 **LIRI** is a Language Interpretation and Recognition Interface. **LIRI** is a command line node app that takes in parameters and gives the user back data.
 
 LIRI will search **Spotify API** for songs and use **axios** to search **Bands in Town Events API** for concerts and **OMDB API** for movies. 

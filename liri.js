@@ -22,7 +22,7 @@ let fs = require("fs");
 let moment = require('moment');
 
 // global variable - logData
-let state = { logData: "" };
+let state = {logData: "" };
 
 // Determine what the user wants information on
 // can choose from concert,spotify song, movie, or do what it says
@@ -287,7 +287,7 @@ function doWhatItSays() {
 }
 function dataLog(dataItem) {
   console.log(dataItem);
-  fs.appendFile("log.txt", dataItem + ",", function (err) {
+  fs.appendFileSync("log.txt", dataItem + ",", function (err) {
 
     // If an error was experienced we will log it.
     if (err) {
